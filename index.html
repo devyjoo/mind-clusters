@@ -279,7 +279,7 @@
     border-radius: 10px;
     background: var(--bg);
     color: var(--text);
-    font-family: 'Playfair Display', serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 22px;
     letter-spacing: 8px;
     padding: 13px 18px;
@@ -572,6 +572,86 @@
     line-height: 1.6;
   }
 
+  /* Scale % inputs */
+  .scale-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .scale-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    transition: border-color 0.2s;
+  }
+
+  .scale-row:focus-within {
+    border-color: var(--blue);
+    background: var(--blue-light);
+  }
+
+  .scale-row-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .scale-row-input {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pct-input {
+    width: 70px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .pct-input:focus {
+    border-color: var(--blue);
+    background: var(--white);
+  }
+
+  .pct-input::-webkit-inner-spin-button,
+  .pct-input::-webkit-outer-spin-button { opacity: 0; }
+
+  .pct-sign {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  /* Success card font fix */
+  .success-card h2 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 24px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .success-card p {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
   /* Success */
   .success-card {
     display: none;
@@ -594,19 +674,6 @@
     margin: 0 auto 24px;
     font-size: 30px;
     box-shadow: 0 8px 24px rgba(40,85,200,0.25);
-  }
-
-  .success-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
-  .success-card p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.8;
   }
 
   /* Animations */
@@ -693,12 +760,11 @@
   <div class="card" id="step2" style="display:none; animation-delay:0.05s">
     <div class="card-tag">Step 2</div>
     <h2>결과지 확인</h2>
-    <p class="card-desc">아래 결과지에는 Ver.1과 Ver.3이 함께 담겨 있습니다. 두 버전을 모두 확인해주세요.</p>
+    <p class="card-desc">아래 결과지에는 <strong>Ver1 · Ver2의 성격 해석</strong>과 <strong>강점 · 주의</strong>에 대한 내용이 담겨 있습니다.<br><br>각각의 내용이 본인의 실제 성격과 얼마나 유사한지 떠올리며 천천히 확인해주세요. 다음 단계에서 항목별 일치도를 입력하실 수 있습니다.</p>
 
     <div class="pdf-box">
       <div class="pdf-icon">📄</div>
       <div class="pdf-info">
-        <div class="pdf-label">Ver.1 &amp; Ver.3 통합</div>
         <div class="pdf-title" id="pdfName">성격유형 결과지</div>
       </div>
       <a class="btn-outline" id="pdfLink" href="#" target="_blank">열기 ↗</a>
@@ -713,42 +779,40 @@
   <div class="card" id="step3" style="display:none; animation-delay:0.05s">
     <div class="card-tag">Step 3</div>
     <h2>일치도 평가</h2>
-    <p class="card-desc">결과지의 내용이 나의 실제 성격과 얼마나 일치하나요?</p>
+    <p class="card-desc">결과지의 각 항목이 나의 실제 성격과 얼마나 일치하는지 0~100 사이의 숫자로 입력해주세요.</p>
 
-    <div class="scale-list">
-      <label class="scale-item" onclick="selectScale(this, 1)">
-        <input type="radio" name="scale" value="1">
-        <div class="radio-ring"></div>
-        <div class="scale-num-badge">①</div>
-        <span class="scale-text">전혀 일치하지 않음</span>
-      </label>
-      <label class="scale-item" onclick="selectScale(this, 2)">
-        <input type="radio" name="scale" value="2">
-        <div class="radio-ring"></div>
-        <div class="scale-num-badge">②</div>
-        <span class="scale-text">별로 일치하지 않음</span>
-      </label>
-      <label class="scale-item" onclick="selectScale(this, 3)">
-        <input type="radio" name="scale" value="3">
-        <div class="radio-ring"></div>
-        <div class="scale-num-badge">③</div>
-        <span class="scale-text">보통</span>
-      </label>
-      <label class="scale-item" onclick="selectScale(this, 4)">
-        <input type="radio" name="scale" value="4">
-        <div class="radio-ring"></div>
-        <div class="scale-num-badge">④</div>
-        <span class="scale-text">꽤 일치함</span>
-      </label>
-      <label class="scale-item" onclick="selectScale(this, 5)">
-        <input type="radio" name="scale" value="5">
-        <div class="radio-ring"></div>
-        <div class="scale-num-badge">⑤</div>
-        <span class="scale-text">매우 일치함</span>
-      </label>
+    <div class="scale-inputs">
+      <div class="scale-row">
+        <div class="scale-row-label">Ver1 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleVer1" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-row-label">Ver2 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleVer2" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-row-label">강점 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleStrength" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-row-label">주의 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleCaution" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
     </div>
 
-    <p class="error-msg" id="scaleError">일치도를 선택해주세요.</p>
+    <p class="error-msg" id="scaleError">모든 항목을 입력해주세요. (0~100)</p>
     <button class="btn btn-full" onclick="submitScale()" id="scaleBtn">다음 →</button>
   </div>
 
@@ -761,25 +825,15 @@
       <div class="gift-emoji">☕</div>
       <div class="gift-text">
         <strong>기프티콘을 보내드려요!</strong>
-        <span>연락처를 남겨주시면 스타벅스 기프티콘을<br>순차적으로 발송해드립니다.</span>
+        <span>휴대폰 번호를 남겨주시면 스타벅스 기프티콘을<br>순차적으로 발송해드립니다.</span>
       </div>
     </div>
 
-    <div class="contact-tabs">
-      <button class="tab-btn active" id="btnPhone" onclick="switchContact('phone')">📱 휴대폰 번호</button>
-      <button class="tab-btn" id="btnEmail" onclick="switchContact('email')">✉️ 이메일</button>
-    </div>
+    <input type="tel" class="contact-input-field" id="phoneInput" placeholder="010-0000-0000" />
 
-    <div id="phoneWrap">
-      <input type="tel" class="contact-input-field" id="phoneInput" placeholder="010-0000-0000" />
-    </div>
-    <div id="emailWrap" style="display:none">
-      <input type="email" class="contact-input-field" id="emailInput" placeholder="example@email.com" />
-    </div>
-
-    <p class="error-msg" id="contactError">연락처를 입력해주세요.</p>
+    <p class="error-msg" id="contactError">올바른 휴대폰 번호를 입력해주세요.</p>
     <button class="btn btn-full" onclick="submitContact()" id="contactBtn">제출하기</button>
-    <p class="privacy-note">연락처는 기프티콘 발송 외 다른 용도로 사용되지 않습니다.</p>
+    <p class="privacy-note">본 연락처는 스타벅스 기프티콘 발송 목적으로만 수집되며,<br>발송 완료 후 즉시 파기됩니다.<br>기프티콘 발송 외 다른 용도로 사용되지 않습니다.</p>
   </div>
 
   <!-- 완료 -->
@@ -794,9 +848,7 @@
 <script>
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbzkv_36a9RssxpzYO8MJu2XBM94OtYjdAguV33AeauxHGutj-q79HwMB_OIk6GVLkM/exec";
 
-  let selectedScale = null;
   let currentCode = '';
-  let contactType = 'phone';
 
   function setStep(n) {
     for (let i = 1; i <= 4; i++) {
@@ -850,18 +902,24 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function selectScale(el, val) {
-    document.querySelectorAll('.scale-item').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedScale = val;
-    document.getElementById('scaleError').style.display = 'none';
-  }
-
   function submitScale() {
-    if (!selectedScale) { document.getElementById('scaleError').style.display='block'; return; }
+    const ver1 = document.getElementById('scaleVer1').value;
+    const ver2 = document.getElementById('scaleVer2').value;
+    const strength = document.getElementById('scaleStrength').value;
+    const caution = document.getElementById('scaleCaution').value;
+    const errEl = document.getElementById('scaleError');
+
+    const isValid = v => v !== '' && Number(v) >= 0 && Number(v) <= 100;
+    if (!isValid(ver1) || !isValid(ver2) || !isValid(strength) || !isValid(caution)) {
+      errEl.style.display = 'block'; return;
+    }
+    errEl.style.display = 'none';
+
     const btn = document.getElementById('scaleBtn');
     btn.innerHTML = '<span class="loading"></span>저장 중...'; btn.disabled = true;
-    fetch(`${SHEET_URL}?action=saveScale&code=${currentCode}&scale=${selectedScale}`)
+
+    const params = `action=saveScale&code=${currentCode}&ver1=${ver1}&ver2=${ver2}&strength=${strength}&caution=${caution}`;
+    fetch(`${SHEET_URL}?${params}`)
       .then(r => r.json()).catch(() => {})
       .finally(() => {
         document.getElementById('step3').style.display = 'none';
@@ -871,29 +929,16 @@
       });
   }
 
-  function switchContact(type) {
-    contactType = type;
-    document.getElementById('phoneWrap').style.display = type==='phone' ? 'block' : 'none';
-    document.getElementById('emailWrap').style.display = type==='email' ? 'block' : 'none';
-    document.getElementById('btnPhone').classList.toggle('active', type==='phone');
-    document.getElementById('btnEmail').classList.toggle('active', type==='email');
-    document.getElementById('contactError').style.display = 'none';
-  }
-
   function submitContact() {
     const errEl = document.getElementById('contactError');
-    let contact = '';
-    if (contactType === 'phone') {
-      contact = document.getElementById('phoneInput').value.trim();
-      if (!contact || contact.length < 10) { errEl.style.display='block'; errEl.textContent='올바른 휴대폰 번호를 입력해주세요.'; return; }
-    } else {
-      contact = document.getElementById('emailInput').value.trim();
-      if (!contact || !contact.includes('@')) { errEl.style.display='block'; errEl.textContent='올바른 이메일 주소를 입력해주세요.'; return; }
+    const contact = document.getElementById('phoneInput').value.trim();
+    if (!contact || contact.length < 10) {
+      errEl.style.display = 'block'; return;
     }
     errEl.style.display = 'none';
     const btn = document.getElementById('contactBtn');
     btn.innerHTML = '<span class="loading"></span>제출 중...'; btn.disabled = true;
-    fetch(`${SHEET_URL}?action=saveContact&code=${currentCode}&type=${contactType}&contact=${encodeURIComponent(contact)}`)
+    fetch(`${SHEET_URL}?action=saveContact&code=${currentCode}&type=phone&contact=${encodeURIComponent(contact)}`)
       .then(r => r.json()).catch(() => {}).finally(() => showSuccess());
   }
 
