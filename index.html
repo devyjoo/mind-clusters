@@ -749,6 +749,11 @@
 <div class="hero">
   <h1>Mind Clusters 결과 확인</h1>
   <p>개인 고유코드를 입력하시면<br>맞춤 결과지를 확인하실 수 있습니다.</p>
+  <p style="margin-top:14px; font-size:14px; color:var(--muted); line-height:1.6;">
+    결과지 확인 후 항목별 일치도 평가까지 모두 완료해주시면<br>
+    <strong style="color:var(--blue);">스타벅스 기프티콘</strong>을 보내드리고 있습니다. ☕<br>
+    번거로우시더라도 마지막 단계까지 꼭 진행해주시면 감사하겠습니다.
+  </p>
 </div>
 
 <!-- Steps bar -->
@@ -765,17 +770,22 @@
   <div class="step-line" id="line2"></div>
   <div class="step-dot">
     <div class="step-circle" id="sc3">3</div>
-    <div class="step-label" id="sl3">일치도 평가</div>
+    <div class="step-label" id="sl3">유형 일치도</div>
   </div>
   <div class="step-line" id="line3"></div>
   <div class="step-dot">
     <div class="step-circle" id="sc4">4</div>
-    <div class="step-label" id="sl4">자유 의견</div>
+    <div class="step-label" id="sl4">상세 일치도</div>
   </div>
   <div class="step-line" id="line4"></div>
   <div class="step-dot">
     <div class="step-circle" id="sc5">5</div>
-    <div class="step-label" id="sl5">연락처 입력</div>
+    <div class="step-label" id="sl5">자유 의견</div>
+  </div>
+  <div class="step-line" id="line5"></div>
+  <div class="step-dot">
+    <div class="step-circle" id="sc6">6</div>
+    <div class="step-label" id="sl6">연락처 입력</div>
   </div>
 </div>
 
@@ -797,7 +807,7 @@
   <div class="card" id="step2" style="display:none; animation-delay:0.05s">
     <div class="card-tag">Step 2</div>
     <h2>결과지 확인</h2>
-    <p class="card-desc">아래 결과지에는 <strong>Ver1 · Ver2의 성격 해석</strong>과 <strong>강점 · 주의</strong>에 대한 내용이 담겨 있습니다.<br><br>각각의 내용이 본인의 실제 성격과 얼마나 유사한지 떠올리며 천천히 확인해주세요. 다음 단계에서 항목별 일치도를 입력하실 수 있습니다.</p>
+    <p class="card-desc">아래 결과지에는 <strong>Ver1 · Ver2의 성격 해석</strong>과 <strong>세부 변수 설명</strong>에 대한 내용이 담겨 있습니다.<br><br>각각의 내용이 본인의 실제 성격과 얼마나 유사한지 떠올리며 천천히 확인해주시면 감사하겠습니다.<br><br>다음 단계부터는 유형·주요변수·세부변수 각 항목별로 일치도를 나누어 여쭤보려 합니다. 시간이 조금 걸리실 수 있지만, 끝까지 응답해주시면 소중한 자료로 활용하겠습니다.</p>
 
     <div class="pdf-box">
       <div class="pdf-icon">📄</div>
@@ -812,11 +822,11 @@
     </button>
   </div>
 
-  <!-- Step 3: 일치도 -->
+  <!-- Step 3: 유형 · 주요변수 일치도 -->
   <div class="card" id="step3" style="display:none; animation-delay:0.05s">
     <div class="card-tag">Step 3</div>
-    <h2>일치도 평가</h2>
-    <p class="card-desc">결과지의 각 항목이 나의 실제 성격과 얼마나 일치하는지 0~100 사이의 숫자로 입력해주세요.</p>
+    <h2>유형 · 주요변수 일치도</h2>
+    <p class="card-desc">결과지의 각 항목이 실제 본인의 성격과 얼마나 일치하는지 0~100 사이의 숫자로 입력해주시면 감사하겠습니다.</p>
 
     <div class="scale-inputs">
       <div class="scale-row">
@@ -826,7 +836,7 @@
           <span class="pct-sign">%</span>
         </div>
       </div>
-      <div class="scale-row">
+      <div class="scale-row" id="ver2Row" style="display:none">
         <div class="scale-row-label">Ver2 일치도</div>
         <div class="scale-row-input">
           <input type="number" class="pct-input" id="scaleVer2" min="0" max="100" placeholder="0~100" />
@@ -834,16 +844,30 @@
         </div>
       </div>
       <div class="scale-row">
-        <div class="scale-row-label">강점 일치도</div>
+        <div class="scale-row-label">S · 사회적 위축 일치도</div>
         <div class="scale-row-input">
-          <input type="number" class="pct-input" id="scaleStrength" min="0" max="100" placeholder="0~100" />
+          <input type="number" class="pct-input" id="scaleS" min="0" max="100" placeholder="0~100" />
           <span class="pct-sign">%</span>
         </div>
       </div>
       <div class="scale-row">
-        <div class="scale-row-label">주의 일치도</div>
+        <div class="scale-row-label">W · 비이성적 강압 일치도</div>
         <div class="scale-row-input">
-          <input type="number" class="pct-input" id="scaleCaution" min="0" max="100" placeholder="0~100" />
+          <input type="number" class="pct-input" id="scaleW" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-row-label">O · 자기 객관화 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleO" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-row-label">T · 행동 유지력 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleT" min="0" max="100" placeholder="0~100" />
           <span class="pct-sign">%</span>
         </div>
       </div>
@@ -853,11 +877,23 @@
     <button class="btn btn-full" onclick="submitScale()" id="scaleBtn">다음 →</button>
   </div>
 
-  <!-- Step 4: 자유 의견 -->
+  <!-- Step 4: 상세변수(15개) 일치도 -->
   <div class="card" id="step4" style="display:none; animation-delay:0.05s">
     <div class="card-tag">Step 4</div>
+    <h2>세부 변수 일치도</h2>
+    <p class="card-desc">기질 · 양육환경 · 후기환경 15개 세부 지표 각각이 실제 본인의 성격과 얼마나 일치하는지 입력해주시면 감사하겠습니다.</p>
+
+    <div class="scale-inputs" id="detailScaleWrap"></div>
+
+    <p class="error-msg" id="detailScaleError">모든 항목을 입력해주세요. (0~100)</p>
+    <button class="btn btn-full" onclick="submitDetailScale()" id="detailScaleBtn">다음 →</button>
+  </div>
+
+  <!-- Step 5: 자유 의견 -->
+  <div class="card" id="step5" style="display:none; animation-delay:0.05s">
+    <div class="card-tag">Step 5</div>
     <h2>자유 의견</h2>
-    <p class="card-desc">Mind Clusters를 통해 느끼신 점을 자유롭게 작성해주세요. (선택사항)</p>
+    <p class="card-desc">Mind Clusters를 통해 느끼신 점을 자유롭게 작성해주시면 감사하겠습니다. (선택사항)</p>
 
     <div class="scale-inputs">
       <div class="opinion-row">
@@ -873,16 +909,16 @@
     <button class="btn btn-full" onclick="submitOpinion()" id="opinionBtn" style="margin-top:8px">다음 →</button>
   </div>
 
-  <!-- Step 5: 연락처 -->
-  <div class="card" id="step5" style="display:none; animation-delay:0.05s">
-    <div class="card-tag">Step 5</div>
+  <!-- Step 6: 연락처 -->
+  <div class="card" id="step6" style="display:none; animation-delay:0.05s">
+    <div class="card-tag">Step 6</div>
     <h2>스타벅스 기프티콘 받기</h2>
 
     <div class="gift-notice">
       <div class="gift-emoji">☕</div>
       <div class="gift-text">
-        <strong>기프티콘을 보내드려요!</strong>
-        <span>휴대폰 번호를 남겨주시면 스타벅스 기프티콘을<br>순차적으로 발송해드립니다.</span>
+        <strong>모든 응답을 완료해주셔서 감사합니다!</strong>
+        <span>휴대폰 번호를 남겨주시면 스타벅스 기프티콘을<br>순차적으로 발송해드리겠습니다.</span>
       </div>
     </div>
 
@@ -906,15 +942,16 @@
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbzkSxbwGrb0GOrnikW3nZHDhvXnmCvtuKLzHuPymjKjIItFYYOGi46L6SLDGvZ6KKZJ/exec";
 
   let currentCode = '';
+  let currentHasVer2 = false;
 
   function setStep(n) {
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 6; i++) {
       const c = document.getElementById(`sc${i}`);
       const l = document.getElementById(`sl${i}`);
       if (i < n) {
         c.classList.remove('active'); c.classList.add('done'); c.textContent = '✓';
         l.classList.remove('active');
-        if (i <= 4) document.getElementById(`line${i}`).classList.add('done');
+        if (i <= 5) document.getElementById(`line${i}`).classList.add('done');
       } else if (i === n) {
         c.classList.add('active'); c.classList.remove('done');
         l.classList.add('active');
@@ -938,8 +975,10 @@
       .then(r => r.json())
       .then(data => {
         if (data.found) {
+          currentHasVer2 = !!data.hasVer2;
           document.getElementById('pdfName').textContent = data.pdfName || '성격유형 결과지';
           document.getElementById('pdfLink').href = data.pdfUrl;
+          document.getElementById('ver2Row').style.display = currentHasVer2 ? 'flex' : 'none';
           document.getElementById('step1').style.display = 'none';
           document.getElementById('step2').style.display = 'block';
           setStep(2);
@@ -958,16 +997,49 @@
     setStep(3);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  const DETAIL_FACTORS = [
+    { code: 'A1', name: '예기적 불안' },
+    { code: 'A2', name: '탐색적 활성력' },
+    { code: 'A3', name: '사회적 욕구' },
+    { code: 'A4', name: '사회적 위축' },
+    { code: 'A5', name: '행동 유지력' },
+    { code: 'B1', name: '정서적 온정' },
+    { code: 'B2', name: '자율성 통제' },
+    { code: 'B3', name: '비이성적 강압' },
+    { code: 'B4', name: '이성적 훈육' },
+    { code: 'B5', name: '외부 지지망' },
+    { code: 'C1', name: '스트레스 체감' },
+    { code: 'C2', name: '인지 조절력' },
+    { code: 'C3', name: '자기 객관화' },
+    { code: 'C4', name: '행동적 자기규율' },
+    { code: 'C5', name: '사회적 연대' },
+  ];
+
+  function renderDetailScaleInputs() {
+    const wrap = document.getElementById('detailScaleWrap');
+    wrap.innerHTML = DETAIL_FACTORS.map(f => `
+      <div class="scale-row">
+        <div class="scale-row-label">${f.code} · ${f.name} 일치도</div>
+        <div class="scale-row-input">
+          <input type="number" class="pct-input" id="scaleDetail_${f.code}" min="0" max="100" placeholder="0~100" />
+          <span class="pct-sign">%</span>
+        </div>
+      </div>
+    `).join('');
+  }
 
   function submitScale() {
     const ver1 = document.getElementById('scaleVer1').value;
-    const ver2 = document.getElementById('scaleVer2').value;
-    const strength = document.getElementById('scaleStrength').value;
-    const caution = document.getElementById('scaleCaution').value;
+    const ver2 = currentHasVer2 ? document.getElementById('scaleVer2').value : '';
+    const s = document.getElementById('scaleS').value;
+    const w = document.getElementById('scaleW').value;
+    const o = document.getElementById('scaleO').value;
+    const t = document.getElementById('scaleT').value;
     const errEl = document.getElementById('scaleError');
 
     const isValid = v => v !== '' && Number(v) >= 0 && Number(v) <= 100;
-    if (!isValid(ver1) || !isValid(ver2) || !isValid(strength) || !isValid(caution)) {
+    const ver2Ok = currentHasVer2 ? isValid(ver2) : true;
+    if (!isValid(ver1) || !ver2Ok || !isValid(s) || !isValid(w) || !isValid(o) || !isValid(t)) {
       errEl.style.display = 'block'; return;
     }
     errEl.style.display = 'none';
@@ -975,13 +1047,41 @@
     const btn = document.getElementById('scaleBtn');
     btn.innerHTML = '<span class="loading"></span>저장 중...'; btn.disabled = true;
 
-    const params = `action=saveScale&code=${currentCode}&ver1=${ver1}&ver2=${ver2}&strength=${strength}&caution=${caution}`;
+    const params = `action=saveScale&code=${currentCode}&ver1=${ver1}&ver2=${ver2}&s=${s}&w=${w}&o=${o}&t=${t}`;
     fetch(`${SHEET_URL}?${params}`)
       .then(r => r.json()).catch(() => {})
       .finally(() => {
         document.getElementById('step3').style.display = 'none';
+        renderDetailScaleInputs();
         document.getElementById('step4').style.display = 'block';
         setStep(4);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+  }
+
+  function submitDetailScale() {
+    const errEl = document.getElementById('detailScaleError');
+    const isValid = v => v !== '' && Number(v) >= 0 && Number(v) <= 100;
+
+    const values = {};
+    for (const f of DETAIL_FACTORS) {
+      const v = document.getElementById(`scaleDetail_${f.code}`).value;
+      if (!isValid(v)) { errEl.style.display = 'block'; return; }
+      values[f.code] = v;
+    }
+    errEl.style.display = 'none';
+
+    const btn = document.getElementById('detailScaleBtn');
+    btn.innerHTML = '<span class="loading"></span>저장 중...'; btn.disabled = true;
+
+    const detailParam = DETAIL_FACTORS.map(f => `${f.code}=${values[f.code]}`).join('&');
+    const params = `action=saveDetailScale&code=${currentCode}&${detailParam}`;
+    fetch(`${SHEET_URL}?${params}`)
+      .then(r => r.json()).catch(() => {})
+      .finally(() => {
+        document.getElementById('step4').style.display = 'none';
+        document.getElementById('step5').style.display = 'block';
+        setStep(5);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
   }
@@ -995,9 +1095,9 @@
     fetch(`${SHEET_URL}?action=saveOpinion&code=${currentCode}&good=${encodeURIComponent(good)}&bad=${encodeURIComponent(bad)}`)
       .then(r => r.json()).catch(() => {})
       .finally(() => {
-        document.getElementById('step4').style.display = 'none';
-        document.getElementById('step5').style.display = 'block';
-        setStep(5);
+        document.getElementById('step5').style.display = 'none';
+        document.getElementById('step6').style.display = 'block';
+        setStep(6);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
   }
@@ -1016,7 +1116,7 @@
   }
 
   function showSuccess() {
-    document.getElementById('step5').style.display = 'none';
+    document.getElementById('step6').style.display = 'none';
     document.getElementById('successCard').style.display = 'block';
     document.getElementById('stepsBar').style.display = 'none';
     window.scrollTo({ top: 0, behavior: 'smooth' });
